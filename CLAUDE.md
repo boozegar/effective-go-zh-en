@@ -45,8 +45,30 @@ The bilingual setup uses:
 1. **LANGS.md**: JavaScript-based language picker that checks `localStorage` for `honkit:language` preference (defaults to `zh`)
 2. **Custom Plugin**: `plugins/gitbook-plugin-language-pref/` - a local Honkit plugin that handles language preference persistence
 3. **Separate SUMMARY.md files**: Each language directory (`en/`, `zh/`) has its own table of contents
+4. **Per-language book.json files**: Each language subdirectory has its own `book.json` to configure the interface language
 
 The language switcher appears in the top-right corner of the built site.
+
+#### Interface Language Configuration (IMPORTANT)
+
+Honkit's interface elements (search box, navigation buttons, etc.) require proper language code configuration:
+
+**Critical Configuration:**
+- Root `book.json`: Sets default language to `"zh-hans"` (Simplified Chinese)
+- `zh/book.json`: Must explicitly set `"language": "zh-hans"` to display Simplified Chinese UI
+- `en/book.json`: Must set `"language": "en"` for English UI
+
+**Language Code Reference:**
+- `zh` = Traditional Chinese (default Honkit behavior)
+- `zh-hans` = Simplified Chinese (汉语简体)
+- `zh-hant` = Traditional Chinese (正體中文)
+- `en` = English
+
+**Common Issue:**
+If the search placeholder shows "輸入並搜尋" (Traditional Chinese) instead of "输入并搜索" (Simplified Chinese), it means the language subdirectory's `book.json` is missing or incorrect. Always ensure each language directory has its own `book.json` with the correct `language` field.
+
+**Why this is needed:**
+In Honkit's multilingual mode, the directory name alone (`zh/`) defaults to Traditional Chinese. The per-directory `book.json` overrides this behavior and tells Honkit which specific language variant to use for UI elements.
 
 ### Content Organization
 
