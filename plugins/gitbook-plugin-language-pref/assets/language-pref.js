@@ -1,4 +1,9 @@
 (function (gitbook) {
+  var languages = {
+    "zh": "简体中文",
+    "en": "English"
+  };
+
   function persistLanguage() {
     if (!gitbook || !gitbook.state || !gitbook.state.book) {
       return;
@@ -14,5 +19,65 @@
     }
   }
 
-  gitbook.events.bind("page.change", persistLanguage);
+  function createLanguageSwitcher() {
+    if (!gitbook || !gitbook.state || !gitbook.state.book) {
+      return;
+    }
+
+    var currentLang = gitbook.state.book.language;
+    if (!currentLang) {
+      return;
+    }
+
+    // Remove existing switcher if any
+    var existing = document.querySelector(".language-switcher");
+    if (existing) {
+      existing.remove();
+    }
+
+    // Create language switcher
+    var switcher = document.createElement("div");
+    switcher.className = "language-switcher";
+
+    var select = document.createElement("select");
+    select.className = "language-selector";
+
+    Object.keys(languages).forEach(function(lang) {
+      var option = document.createElement("option");
+      option.value = lang;
+      option.textContent = languages[lang];
+      option.selected = lang === currentLang;
+      select.appendChild(option);
+    });
+
+    select.addEventListener("change", function() {
+      var targetLang = select.value;
+      var currentPath = window.location.pathname;
+      var pathParts = currentPath.split("/");
+
+      // Replace language in path
+      var newPath = currentPath.replace("/" + currentLang + "/", "/" + targetLang + "/");
+
+      try {
+        window.localStorage.setItem("honkit:language", targetLang);
+      } catch (err) {
+        /* ignore */
+      }
+
+      window.location.href = newPath;
+    });
+
+    switcher.appendChild(select);
+
+    // Insert into book header
+    var header = document.querySelector(".book-header");
+    if (header) {
+      header.appendChild(switcher);
+    }
+  }
+
+  gitbook.events.bind("page.change", function() {
+    persistLanguage();
+    createLanguageSwitcher();
+  });
 })(window.gitbook);

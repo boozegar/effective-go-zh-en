@@ -43,11 +43,25 @@ Each chapter is a standalone markdown file numbered sequentially (e.g., `01_Over
 The bilingual setup uses:
 
 1. **LANGS.md**: JavaScript-based language picker that checks `localStorage` for `honkit:language` preference (defaults to `zh`)
-2. **Custom Plugin**: `plugins/gitbook-plugin-language-pref/` - a local Honkit plugin that handles language preference persistence
+2. **Custom Plugin**: `plugins/gitbook-plugin-language-pref/` - a local Honkit plugin that handles:
+   - Language preference persistence to `localStorage`
+   - Dynamic language switcher UI in the top-right corner of each page
+   - Automatic page redirection when switching languages
 3. **Separate SUMMARY.md files**: Each language directory (`en/`, `zh/`) has its own table of contents
 4. **Per-language book.json files**: Each language subdirectory has its own `book.json` to configure the interface language
 
-The language switcher appears in the top-right corner of the built site.
+#### Language Switcher UI
+
+The language switcher appears as a dropdown selector in the top-right corner of every page:
+
+- **Location**: `plugins/gitbook-plugin-language-pref/assets/`
+  - `language-pref.js` - Creates and manages the dropdown switcher UI
+  - `language-pref.css` - Styles the switcher with hover effects and responsive design
+- **Functionality**:
+  - Displays current language (简体中文/English)
+  - Switches to equivalent page in target language on selection
+  - Persists language choice to `localStorage` for future visits
+- **Implementation**: Injected into `.book-header` element on every page change via Honkit's event system
 
 #### Interface Language Configuration (IMPORTANT)
 

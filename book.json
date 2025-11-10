@@ -3,7 +3,9 @@
   "description": "Effective Go in English and Simplified Chinese, published with Honkit.",
   "root": ".",
   "output": "_book",
+  "language": "zh-hans",
   "plugins": [
     "language-pref"
-  ]
+  ],
+  "pluginsConfig": {}
 }
