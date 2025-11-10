@@ -1,0 +1,16 @@
+{
+  "name": "effective-go-honkit",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "honkit serve",
+    "build": "honkit build",
+    "pdf": "honkit pdf ./ dist/effective-go.pdf",
+    "epub": "honkit epub ./ dist/effective-go.epub",
+    "mobi": "honkit mobi ./ dist/effective-go.mobi"
+  },
+  "devDependencies": {
+    "gitbook-plugin-language-pref": "file:plugins/gitbook-plugin-language-pref",
+    "honkit": "^6.1.4"
+  }
+}

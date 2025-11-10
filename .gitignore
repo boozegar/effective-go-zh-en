@@ -1,0 +1,27 @@
+# Hugo build outputs
+/public/
+/resources/_gen/
+/assets/jsconfig.json
+
+# Hugo cache
+.hugo_build.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+
+# Honkit / Node build artifacts
+node_modules/
+_book/
+dist/
+.astro/

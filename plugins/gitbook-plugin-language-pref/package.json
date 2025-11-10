@@ -1,0 +1,9 @@
+{
+  "name": "gitbook-plugin-language-pref",
+  "version": "0.1.0",
+  "main": "index.js",
+  "engines": {
+    "honkit": ">=0.0.0"
+  }
+}
+

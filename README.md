@@ -20,25 +20,28 @@ Go 是一门全新的语言。尽管它从既有的语言中借鉴了许多理�
 
 ---
 
+
+## 使用 Honkit / Using Honkit
+
+在本仓库中，文档通过 [Honkit](https://honkit.netlify.app/) 构建和预览。
+
+```bash
+npm install
+npm run start    # 本地预览
+npm run build    # 生成静态站点到 _book/
+```
+
+更多输出：
+
+- `npm run pdf` 会把 PDF 导出到 `dist/effective-go.pdf`
+- `npm run epub` 会把 EPUB 导出到 `dist/effective-go.epub`
+- `npm run mobi` 会把 MOBI 导出到 `dist/effective-go.mobi`
+
+使用右上角的语言切换器可在“简体中文”与“English”之间切换，首页始终展示本 `README.md`。
+
 ## 章节
 
-1. [前言](README.md)
-2. [引言](01_Overview.md)
-3. [格式化](02_Formatting.md)
-4. [注释](03_Commentary.md)
-5. [命名](04_Names.md)
-6. [分号](05_Semicolons.md)
-7. [控制结构](06_Control_structures.md)
-8. [函数](07_Functions.md)
-9. [数据](08_Data.md)
-10. [初始化](09_Initialization.md)
-11. [方法](10_Methods.md)
-12. [接口和其他类型](11_Interfaces_and_other_types.md)
-13. [空白标识符](12_The_blank_identifier.md)
-14. [内嵌](13_Embedding.md)
-15. [并发](14_Concurrency.md)
-16. [错误](15_Errors.md)
-17. [一个 Web 服务器](16_A_web_server.md)
+切换到目标语言后，侧边目录会显示该语言的完整章节列表。原文和译文分别位于 `en/` 与 `zh/` 目录中。
 
 > 改版说明：@2016.8.6 by bingoHuang, revision to Chinese & English version.
 
@@ -50,7 +53,7 @@ Go 是一门全新的语言。尽管它从既有的语言中借鉴了许多理�
 
 > 感谢 [hellogcc](http://www.hellogcc.org) 提供的 [中文翻译版一](http://www.hellogcc.org/effective_go.html)，这是我之前制作中文版电子书所参考的资料，翻译的很用心。
 
-> 要更感谢 [Go 语言中文社区](https://go-zh.org/) 提供的 [中文翻译版二](https://go-zh.org/doc/effective_go.html)，此翻译更贴切有味道，不可多得。本人已和 [Go-zh 项目组](https://github.com/Go-zh/go) 沟通过，获取了该社区的授权，故将此作为双语版的中文版本。
+> 要更感谢 [Go 语言中文社区](https://go-zh.org/) 提供的 [中文翻译版二](https://go-zh.org/doc/effective_go.html)，此翻译更贴切有味道，不可多得。本人已经和 [Go-zh 项目组](https://github.com/Go-zh/go) 沟通过，获取了该社区的授权，故将此作为双语版的中文版本。
 
 ### 参考
 
@@ -62,9 +65,9 @@ Go 是一门全新的语言。尽管它从既有的语言中借鉴了许多理�
 
 ### Read, Fork and Star
 
-+ **[Read on GitBook](https://www.gitbook.com/book/bingohuang/effective-go-zh-en/details)**
-+ **[Fork on GitHub](https://github.com/bingoHuang/effective-go-zh-en)**
-+ 请顺手点一下 `STAR` ，或者留言讨论，这是对我最大的鼓励！
+- **[Read on GitBook](https://www.gitbook.com/book/bingohuang/effective-go-zh-en/details)**
+- **[Fork on GitHub](https://github.com/bingoHuang/effective-go-zh-en)**
+- 请顺手点一下 `STAR` ，或者留言讨论，这是对我最大的鼓励！
 
 ### 下载
 

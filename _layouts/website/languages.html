@@ -1,0 +1,76 @@
+{% extends "./layout.html" %}
+
+{% block head %}
+    {{ super() }}
+    {% set fallback = languages.list[0] %}
+    <meta http-equiv="refresh" content="0; url={{ (fallback.id + "/README.md")|contentURL }}">
+{% endblock %}
+
+{% block body %}
+<div class="book-langs-index" role="navigation">
+    <div class="inner">
+        <h3>{{ "LANGS_CHOOSE"|t }}</h3>
+
+        <p>{{ "LANGS_CHOOSE"|t }}:</p>
+        <ul class="languages">
+        {% for lang in languages.list %}
+            <li>
+                <a data-lang="{{ lang.id }}" href="{{ (lang.id + "/README.md")|contentURL }}">{{ lang.title }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+
+        <noscript>
+            <p>{{ "LANGS_CHOOSE"|t }} ({{ languages.list[0].title }} will open by default).</p>
+        </noscript>
+    </div>
+</div>
+
+<script>
+(function () {
+    if (typeof window === "undefined") return;
+
+    var links = {};
+    {% for lang in languages.list %}
+    links["{{ lang.id }}"] = "{{ (lang.id + "/README.md")|contentURL }}";
+    {% endfor %}
+
+    var available = Object.keys(links);
+    var fallback = "{{ languages.list[0].id }}";
+
+    function resolvePreference() {
+        try {
+            var stored = window.localStorage.getItem("honkit:language");
+            if (stored && available.indexOf(stored) !== -1) {
+                return stored;
+            }
+        } catch (err) {
+            /* ignore */
+        }
+        return fallback;
+    }
+
+    var target = resolvePreference();
+    try {
+        window.localStorage.setItem("honkit:language", target);
+    } catch (err) {
+        /* ignore */
+    }
+
+    if (links[target]) {
+        window.location.replace(links[target]);
+    }
+
+    document.querySelectorAll("[data-lang]").forEach(function (anchor) {
+        anchor.addEventListener("click", function (event) {
+            var lang = anchor.getAttribute("data-lang");
+            try {
+                window.localStorage.setItem("honkit:language", lang);
+            } catch (err) {
+                /* ignore */
+            }
+        });
+    });
+})();
+</script>
+{% endblock %}
