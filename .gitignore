@@ -23,5 +23,6 @@ Thumbs.db
 # Honkit / Node build artifacts
 node_modules/
 _book/
+book/
 dist/
 .astro/

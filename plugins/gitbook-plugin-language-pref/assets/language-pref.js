@@ -73,10 +73,6 @@
     var header = document.querySelector(".book-header");
     if (header) {
       header.appendChild(switcher);
-      // Add loaded class after a brief delay to trigger fade-in
-      setTimeout(function() {
-        switcher.classList.add("loaded");
-      }, 100);
     }
   }
 
