@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "honkit serve",
-    "build": "honkit build",
+    "build": "honkit build . book",
     "pdf": "honkit pdf ./ dist/effective-go.pdf",
     "epub": "honkit epub ./ dist/effective-go.epub",
     "mobi": "honkit mobi ./ dist/effective-go.mobi"
