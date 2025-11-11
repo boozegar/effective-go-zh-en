@@ -4,6 +4,13 @@
     "en": "English"
   };
 
+  function getChapterFromPath(path) {
+    // Extract chapter filename from path (e.g., "/zh/05_Semicolons.html" -> "05_Semicolons.html")
+    // Only match chapter files (01-16), not index.html
+    var match = path.match(/\/(\d{2}_[^\/]+\.html)/);
+    return match ? match[1] : null;
+  }
+
   function persistLanguage() {
     if (!gitbook || !gitbook.state || !gitbook.state.book) {
       return;
@@ -16,6 +23,20 @@
       window.localStorage.setItem("honkit:language", lang);
     } catch (err) {
       /* ignore persistence errors */
+    }
+  }
+
+  function persistLastChapter() {
+    var currentPath = window.location.pathname;
+    var chapter = getChapterFromPath(currentPath);
+
+    // Only persist if we're on a chapter page (not index/preface)
+    if (chapter) {
+      try {
+        window.localStorage.setItem("honkit:lastChapter", chapter);
+      } catch (err) {
+        /* ignore persistence errors */
+      }
     }
   }
 
@@ -78,6 +99,7 @@
 
   gitbook.events.bind("page.change", function() {
     persistLanguage();
+    persistLastChapter();
     createLanguageSwitcher();
   });
 })(window.gitbook);
